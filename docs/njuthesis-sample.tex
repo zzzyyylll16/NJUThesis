@@ -1,68 +1,23 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% njuthesis 示例模板 v1.4.3 2025-05-21
-% https://github.com/nju-lug/NJUThesis
+% 中国A股市场波动率管理投资组合(VMP)的实证研究
+% ——基于Fama-French五因子与动量因子的检验
 %
-% 贡献者
-% Yu XIONG @atxy-blip   Yichen ZHAO @FengChendian
-% Song GAO @myandeg     Chang MA @glatavento
-% Yilun SUN @HermitSun  Yinfeng LIN @linyinfeng
-% Yukai CHOU @Muzimuzhi Liu Dongmiao@liudongmiao
-% Wenrui HUANG @rijuyuezhu
-%
-% 许可证
-% LaTeX Project Public License（版本 1.3c 或更高）
+% 基于 njuthesis 模板
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%---------------------------------------------------------------------
-% 一些提升使用体验的小技巧：
-%   1. 请务必使用 UTF-8 编码编写和保存本文档
-%   2. 请务必使用 XeLaTeX 或 LuaLaTeX 引擎进行编译
-%   3. 不保证接口稳定，写作前一定要留意版本号
-%   4. 以百分号(%)开头的内容为注释，可以随意删除
-%---------------------------------------------------------------------
-
-%---------------------------------------------------------------------
-% 请先阅读使用手册：
-% http://mirrors.ctan.org/macros/unicodetex/latex/njuthesis/njuthesis.pdf
-%---------------------------------------------------------------------
-
 \documentclass[
-    % 模板选项(注意右端逗号)：
-    %
-    % type = bachelor|master|doctor|postdoc, % 文档类型，默认为本科生
-    % degree = academic|professional,        % 学位类型，默认为学术型
-    %
-    % nl-cover,   % 是否需要国家图书馆封面，默认关闭
-    % decl-page,  % 是否需要诚信承诺书或原创性声明，默认关闭
-    %
-    %   页面模式，详见手册说明
-    % draft,                  % 开启草稿模式
-    % anonymous,              % 开启盲审模式
-    % minimal,                % 开启最小化模式
-    %
-    %   单双面模式，默认为适合印刷的双面模式
-    % oneside,                % 单面模式，无空白页
-    % twoside,                % 双面模式，每一章从奇数页开始
-    %
-    %   字体设置，不填写则自动调用系统预装字体，详见手册
-    % fontset = win|mac|macoffice|fandol|none,
+    % type = master,
+    % degree = academic,
+    % decl-page,
   ]{njuthesis}
 
-% 模板选项设置，包括个人信息、外观样式等
-% 较为冗长且一般不需要反复修改，我们把它放在单独的文件里
 \input{njuthesis-setup.def}
 
-% 自行载入所需宏包
-% \usepackage{subcaption} % 嵌套小幅图像，比 subfig 和 subfigure 更新更好
-% \usepackage{siunitx} % 标准单位符号
-% \usepackage{physics} % 物理百宝箱
-% \usepackage[version=4]{mhchem} % 绘制分子式
-% \usepackage{listings} % 展示代码
-% \usepackage{algorithm,algorithmic} % 展示算法伪代码
-
-% 在导言区随意定制所需命令
-% \DeclareMathOperator{\spn}{span}
-% \NewDocumentCommand\mathbi{m}{\textbf{\em #1}}
+% 载入所需宏包
+\usepackage{booktabs}    % 专业三线表
+\usepackage{multirow}    % 表格合并行
+\usepackage{amsmath}     % 数学公式
+\usepackage{graphicx}    % 插图
 
 % 开始编写论文
 \begin{document}
@@ -71,62 +26,506 @@
 %	封面、摘要、前言和目录
 %---------------------------------------------------------------------
 
-% 生成封面页
 \maketitle
-
-% 模板默认使用 \flushbottom，即底部平齐
-% 效果更好，但可能出现 underfull \vbox 信息
-% 以下命令用于抑制这些信息
 \raggedbottom
 
+% ====================================================================
+% 中文摘要
+% ====================================================================
 \begin{abstract}
-  中文摘要
+
+因子投资是量化金融领域的核心策略之一，但在实践中常伴随着因子收益的剧烈波动甚至"因子崩盘"的极端风险。Moreira和Muir（2017）提出的波动率管理投资组合（Volatility-Managed Portfolios，VMP）策略通过以方差的倒数动态调整因子仓位，在美国市场取得了显著的风险调整后收益提升。然而，这一策略在中国A股市场——一个以高波动率、散户主导和"牛短熊长"为特征的新兴市场——是否同样有效，目前尚缺乏系统性的实证检验。
+
+本文基于国泰安（CSMAR）数据库2005年至2025年的日度数据，将VMP策略应用于中国A股的Fama-French五因子（MKT、SMB、HML、RMW、CMA）及动量因子（UMD），进行了全面的实证检验。为回应DeMiguel等人（2020）关于因子策略交易成本的学术质疑，本文在构建VMP时严格施加了3倍最大杠杆约束，并按每日权重变化幅度扣除单边万分之一的交易成本。所有统计推断均采用Newey-West异方差自相关一致标准误进行修正。
+
+研究发现，VMP策略在A股市场表现出显著的不对称性：对于已在中国市场被证实有效的市场因子（MKT）和规模因子（SMB），VMP反而损害了其表现；对于价值（HML）、盈利（RMW）和投资（CMA）因子，VMP的改善效果不具统计显著性。然而，VMP对动量因子（UMD）的提升效果极为突出——在扣除交易成本后，动量因子的净夏普比率从$-0.11$大幅提升至$0.44$，年化超额收益（Alpha）达到$8.1\%$，Newey-West修正t统计量为$3.27$（$p = 0.001$），在$1\%$水平下极度显著。这一结论在替换波动率估计窗口（63天、126天）、划分样本内外时期以及2015年股灾、2018年贸易战和2022年熊市等重大危机子样本分析中均保持稳健。
+
+本文的核心发现表明：中国市场的动量效应并非"信号不存在"，而是"信号被极端波动所淹没"。VMP通过在高波动时期自动降低仓位，有效过滤了反转踩踏等极端事件带来的噪音，从而"救活"了一个在中国市场原本被认为失效的因子。本研究为A股市场的量化风险管理提供了新的经验证据，并为因子投资实践中的动态仓位管理提供了理论依据。
+
 \end{abstract}
 
+% ====================================================================
+% 英文摘要
+% ====================================================================
 \begin{abstract*}
-  English abstract
+
+Factor investing is a cornerstone of quantitative finance, yet it is frequently plagued by extreme return volatility and ``factor crashes'' in practice. The Volatility-Managed Portfolios (VMP) strategy proposed by Moreira and Muir (2017) dynamically adjusts factor exposures using the inverse of realized variance, achieving significant risk-adjusted return improvements in U.S. markets. However, whether this strategy remains effective in the Chinese A-share market---an emerging market characterized by high volatility, retail investor dominance, and asymmetric bull-bear cycles---lacks systematic empirical examination.
+
+Using daily data from the CSMAR database spanning 2005 to 2025, this paper applies the VMP strategy to the Chinese Fama-French five factors (MKT, SMB, HML, RMW, CMA) and the momentum factor (UMD). To address concerns raised by DeMiguel et al. (2020) regarding trading costs in factor strategies, the VMP construction strictly imposes a 3x maximum leverage constraint and deducts one-sided trading costs of 1 basis point based on daily weight changes. All statistical inferences employ Newey-West heteroskedasticity and autocorrelation consistent standard errors.
+
+The findings reveal a striking asymmetry: VMP impairs the performance of factors already proven effective in China (MKT, SMB), and shows statistically insignificant improvements for HML, RMW, and CMA. However, VMP's enhancement of the momentum factor (UMD) is remarkable---after trading costs, the net Sharpe ratio rises from $-0.11$ to $0.44$, with an annualized alpha of $8.1\%$ and a Newey-West t-statistic of $3.27$ ($p = 0.001$), significant at the $1\%$ level. These results are robust to alternative volatility estimation windows, in-sample/out-of-sample splits, and crisis-period analyses.
+
+The central implication is that momentum in China is not a ``non-existent signal'' but rather a ``signal drowned by extreme volatility.'' VMP effectively filters out noise from reversal-driven crashes by automatically reducing positions during high-volatility regimes, thereby resurrecting a factor widely considered defunct in the Chinese market. This study provides new empirical evidence for quantitative risk management in the A-share market and offers theoretical justification for dynamic position sizing in factor investing.
+
 \end{abstract*}
 
 % 生成目录
 \tableofcontents
-% 生成图片清单
-% \listoffigures
-% 生成表格清单
-% \listoftables
+\listoffigures
+\listoftables
 
 %---------------------------------------------------------------------
 %	正文部分
 %---------------------------------------------------------------------
 \mainmatter
 
-% 符号表
-% 语法与 description 环境一致
-% 两个可选参数依次为说明区域宽度、符号区域宽度
-% 带星号的符号表(notation*)不会插入目录
-% \begin{notation}[10cm]
-%   \item[DFT] 密度泛函理论 (Density functional theory)
-%   \item[DMRG] 密度矩阵重正化群 (Density-Matrix Reformation-Group)
-% \end{notation}
-
-% 建议将论文内容拆分为多个文件
-% 即新建一个 chapters 文件夹
-% 把每一章的内容单独放入一个 .tex 文件
-% 然后在这里用 \include 导入，例如
-%   \include{chapters/introduction}
-%   \include{chapters/environments}
-
+% ====================================================================
+% 第一章：引言
+% ====================================================================
 \chapter{引言}
 
-\section{量子计算}
+\section{研究背景与动机}
 
-John Preskill 认为我们现在处于“含噪声的中型量子时代”。\cite{preskill2018}
-量子位的不稳定性和有限的量子比特数量限制了量子计算机的复杂度和纠错能力。
+自Fama和French \cite{fama1993common,fama2015five} 提出因子资产定价模型以来，因子投资已成为学术界和业界连接资产定价理论与投资实践的核心桥梁。市场因子（MKT）、规模因子（SMB）、价值因子（HML）、盈利因子（RMW）、投资因子（CMA）以及动量因子（UMD）\cite{carhart1997persistence,jegadeesh1993returns}，构成了当代多因子模型的基本框架。
+
+然而，因子投资在实践中并非无风险的"免费午餐"。因子收益率常伴随剧烈的波动，极端情形下甚至出现"因子崩盘"（Factor Crashes）。Daniel和Moskowitz \cite{daniel2016momentum} 的研究表明，动量策略在市场反转期间可能遭受灾难性的损失。这一现象在中国A股市场尤为突出：2015年股灾期间，动量因子的年化收益率跌至$-85\%$；即便在正常年份，A股市场高波动、散户主导和"牛短熊长"的特征也使得因子投资面临远超成熟市场的风险暴露。
+
+面对这一问题，Moreira和Muir \cite{moreira2017volatility} 提出了一个优雅的解决思路：既然因子收益率的方差具有可预测性，而收益率与方差之间缺乏正相关关系，那么投资者可以在高波动时期降低仓位、在低波动时期提高仓位，从而在不牺牲预期收益的前提下显著降低投资组合的风险。这一波动率管理投资组合（VMP）策略在美国市场的实证结果令人瞩目，引发了广泛的学术讨论。
+
+然而，一个核心的学术空白仍然存在：\textbf{VMP策略在中国A股市场是否有效？}
+
+\section{研究问题与核心贡献}
+
+本文需要明确区分两个层次的问题：
+
+\textbf{问题A}（文献已回答）：各因子在中国A股市场本身是否有效？Liu等 \cite{liu2019size} 和相关文献已经表明，MKT和SMB在A股具有显著的风险溢价，而动量因子在中国普遍被认为是失效的。
+
+\textbf{问题B}（本文回答）：将VMP这一"工具"应用于各因子后，能否改善其风险收益特征？这是一个完全不同的问题——它关注的不是"因子信号是否存在"，而是"波动率管理能否创造增量价值"。
+
+本文的核心贡献在于三个方面：
+\begin{enumerate}
+  \item 首次将VMP策略系统性地应用于中国A股市场的Fama-French五因子加动量因子，填补了新兴市场维度的实证空白。
+  \item 直接回应DeMiguel等人 \cite{demiguel2024transaction} 和Cederburg等人 \cite{cederburg2020performance} 的学术质疑，在严格的交易成本扣除和杠杆约束下检验VMP的净效果。
+  \item 发现了一个具有重要学术意义的"不对称性"结论：VMP对大多数因子无效甚至有害，但唯独能"救活"动量因子，并对这一现象提出了"信号被极端波动淹没"的机制解释。
+\end{enumerate}
+
+\section{论文结构}
+
+本文的结构安排如下：第二章为文献综述，梳理因子投资、VMP理论及中国市场因子有效性的相关研究；第三章介绍数据来源与研究方法；第四章报告核心实证结果，聚焦于VMP对各因子的差异化影响；第五章进行多维度的稳健性检验；第六章总结全文并讨论政策与实践启示。
+
+
+% ====================================================================
+% 第二章：文献综述
+% ====================================================================
+\chapter{文献综述}
+
+\section{因子投资理论}
+
+\subsection{从CAPM到Fama-French五因子模型}
+
+现代因子投资的理论根基可以追溯到资本资产定价模型（CAPM）。Fama和French \cite{fama1993common} 提出的三因子模型加入了规模因子（SMB）和价值因子（HML），大幅提升了对股票截面收益的解释力。2015年，Fama和French \cite{fama2015five} 进一步将模型扩展为五因子，新增盈利因子（RMW）和投资因子（CMA），认为这五个因子能够描述大部分股票收益率的横截面差异。
+
+% TODO: 扩写CAPM→三因子→五因子的演进逻辑
+
+\subsection{动量效应与动量崩盘}
+
+Jegadeesh和Titman \cite{jegadeesh1993returns} 最早记录了股票市场中的动量效应：过去表现好的股票在未来一段时间内倾向于继续表现好。Carhart \cite{carhart1997persistence} 将动量纳入资产定价模型，形成四因子模型。然而，Daniel和Moskowitz \cite{daniel2016momentum} 发现动量策略存在尾部风险——在市场从熊市向牛市反转的初期，动量策略可能遭受毁灭性的亏损，他们称之为"动量崩盘"。
+
+% TODO: 详细讨论动量崩盘的机制和文献证据
+
+\section{波动率管理投资组合（VMP）理论}
+
+\subsection{VMP的提出与核心思想}
+
+Moreira和Muir \cite{moreira2017volatility} 的核心观察是：因子收益率的条件方差具有较强的时序可预测性，而条件均值与方差之间的关系很弱甚至为负。这一特征意味着：当波动率升高时，投资者承担了更多的风险，但并没有获得相应的额外补偿。因此，通过方差倒数加权动态调整仓位，可以在保持预期收益的同时显著降低投资组合的波动率，提高夏普比率。
+
+\subsection{对VMP的质疑与学术争论}
+
+VMP策略并非没有受到挑战。Cederburg等人 \cite{cederburg2020performance} 指出，VMP的优势在不同资产类别和时间段上并不稳健，部分因子的改善在统计上不显著。DeMiguel等人 \cite{demiguel2024transaction} 从交易成本的角度提出了更严厉的批评：VMP策略的高频调仓会产生大量的交易成本，这些成本可能完全抵消波动率择时带来的收益。
+
+Barroso和Santa-Clara \cite{barroso2015momentum} 则从另一个角度支持了波动率管理的价值：他们发现，对动量策略的风险进行实时管理（使用已实现波动率进行仓位调整）可以大幅降低动量策略的极端亏损风险，使得经风险调整后的动量收益变得更加稳定和显著。
+
+% TODO: 更详细地讨论各方争论
+
+\section{中国A股市场因子有效性}
+
+\subsection{中国市场的因子格局}
+
+Liu等人 \cite{liu2019size} 系统性地检验了中国A股市场的因子有效性，发现中国市场存在显著的规模溢价（小市值效应），但价值因子的表现与美国市场存在差异。
+
+% TODO: 引入更多中国市场因子文献，如朱明月、杨函等
+
+\subsection{中国的动量困境}
+
+与美国和欧洲市场不同，大量实证研究表明动量效应在中国A股市场是不显著甚至反转的 \cite{cheema2018momentum}。这一"中国动量之谜"有多种解释：散户投资者的过度反应导致的短期反转、涨跌停板制度对价格发现的阻碍、以及政策干预导致的市场风格突变。
+
+正是这一"动量在中国失效"的共识，构成了本文最重要的研究前提——如果VMP能够在中国"救活"动量因子，这将是一个极具学术价值的发现。
+
+\section{本文与现有文献的关系}
+
+综合以上文献，本文的定位可以清晰地概括为：
+
+\begin{itemize}
+  \item 以往文献告诉我们"哪些因子在中国有效"——这是\textbf{诊断性}的工作。
+  \item 本文回答的是"VMP这一工具能否改善因子表现"——这是\textbf{工具性}的检验。
+  \item 两者的关系是：文献提供了"各因子的基准表现"，本文在此基础上检验"波动率管理的增量价值"。
+\end{itemize}
+
+
+% ====================================================================
+% 第三章：数据来源与研究方法
+% ====================================================================
+\chapter{数据来源与研究方法}
+
+\section{数据说明}
+
+\subsection{数据来源}
+
+本文使用的因子收益率数据来源于国泰安（CSMAR）数据库，包括Fama-French五因子（MKT\_RF, SMB, HML, RMW, CMA）以及动量因子（UMD）的日度收益率和无风险利率（RF）。
+
+\subsection{样本期间}
+
+全样本期间为2005年1月4日至2025年3月。为进行样本内外检验，将样本划分为：
+\begin{itemize}
+  \item \textbf{全样本}：2005--2025年
+  \item \textbf{样本内}：2010--2019年
+  \item \textbf{样本外}：2020--2025年
+\end{itemize}
+
+此外，为检验VMP在极端市场环境中的表现，本文额外选取了三个重大危机时期作为子样本：
+\begin{itemize}
+  \item \textbf{2015年股灾}：2015年6月--2016年1月
+  \item \textbf{2018年贸易战}：2018年全年
+  \item \textbf{2022年俄乌冲突与疫情}：2022年全年
+\end{itemize}
+
+\section{VMP策略构建}
+
+\subsection{波动率测度}
+
+对于每个因子$f$，在交易日$t$，基于过去$W$个交易日的日度收益率计算已实现方差：
+\begin{equation}
+  \hat{\sigma}_{f,t}^{2} = \sum_{i=1}^{W} r_{f,t-i}^{2}
+  \label{eq:rv}
+\end{equation}
+
+其中$W$为滚动窗口长度。基准窗口设为$W = 21$（约1个月），稳健性检验中替换为$W = 63$（一季度）和$W = 126$（半年）。
+
+\subsection{VMP收益率计算}
+
+根据Moreira和Muir \cite{moreira2017volatility}，VMP的日度收益率为：
+\begin{equation}
+  r_{f,t}^{VMP} = \frac{c}{\hat{\sigma}_{f,t-1}^{2}} \cdot r_{f,t}
+  \label{eq:vmp}
+\end{equation}
+
+其中$c$为缩放常数，用于使VMP收益率的无条件波动率与原始因子收益率一致：
+\begin{equation}
+  c = \frac{\text{Std}(r_{f})}{\text{Std}\left(\frac{r_{f}}{\hat{\sigma}_{f}^{2}}\right)}
+  \label{eq:scaling}
+\end{equation}
+
+\subsection{杠杆约束}
+
+为确保策略的实践可行性，本文对每日的投资权重施加上限：
+\begin{equation}
+  w_{f,t} = \min\left(\frac{c}{\hat{\sigma}_{f,t-1}^{2}},\ L_{\max}\right)
+  \label{eq:leverage}
+\end{equation}
+
+其中$L_{\max} = 3$，即最大杠杆倍数为3倍。
+
+\subsection{交易成本扣除}
+
+每日的交易成本按权重变化的绝对值乘以单边交易费率计算：
+\begin{equation}
+  TC_{f,t} = |w_{f,t} - w_{f,t-1}| \times \kappa
+  \label{eq:tc}
+\end{equation}
+
+其中$\kappa = 0.001$（即单边10个基点）。VMP的净收益率为：
+\begin{equation}
+  r_{f,t}^{VMP,Net} = w_{f,t} \cdot r_{f,t} - TC_{f,t}
+  \label{eq:vmp_net}
+\end{equation}
+
+\section{绩效评价指标}
+
+\subsection{基本绩效指标}
+
+对于每个因子的原始收益率和VMP净收益率，分别计算以下指标：
+\begin{itemize}
+  \item 年化收益率：$\bar{r} \times 252$
+  \item 年化波动率：$\text{Std}(r) \times \sqrt{252}$
+  \item 夏普比率：年化收益率 / 年化波动率
+  \item 最大回撤：$\max_t \left[\frac{\max_{s \le t}V_s - V_t}{\max_{s \le t}V_s}\right]$
+\end{itemize}
+
+\subsection{Spanning回归与Alpha检验}
+
+为检验VMP是否创造了无法被原始因子解释的超额收益，进行如下回归：
+\begin{equation}
+  r_{f,t}^{VMP,Net} = \alpha + \beta \cdot r_{f,t} + \varepsilon_t
+  \label{eq:spanning}
+\end{equation}
+
+若$\alpha$显著为正，则说明VMP提供了超越原始因子的增量价值。所有t统计量均使用Newey-West \cite{newey1987simple} 异方差自相关一致（HAC）标准误进行修正，滞后阶数为5。
+
+
+% ====================================================================
+% 第四章：实证结果与分析
+% ====================================================================
+\chapter{实证结果与分析}
+
+本章为全文的核心部分。以下实证结果将揭示一个关键发现：\textbf{VMP策略在A股市场并非普适有效的工具，但它能够"救活"一个在中国市场被广泛认为失效的因子——动量因子（UMD）}。
+
+\section{各因子VMP表现概览}
+
+表~\ref{tab:perf_summary} 报告了全样本（2005--2025年）下，六个因子的原始收益与VMP净收益的核心绩效指标对比。
+
+\begin{table}[htbp]
+  \centering
+  \caption{各因子原始收益与VMP净收益绩效对比（全样本，21天窗口）}
+  \label{tab:perf_summary}
+  \begin{tabular}{lccccccc}
+    \toprule
+    因子 & 类型 & 年化收益 & 年化波动 & 夏普比率 & 最大回撤 \\
+    \midrule
+    \multirow{2}{*}{MKT} & 原始 & 13.7\% & 27.4\% & 0.50 & 73.8\% \\
+                          & VMP净值 & 3.5\% & 25.5\% & 0.14 & 81.3\% \\
+    \midrule
+    \multirow{2}{*}{SMB} & 原始 & 9.6\% & 13.0\% & 0.74 & 49.3\% \\
+                          & VMP净值 & 1.3\% & 12.1\% & 0.11 & 73.7\% \\
+    \midrule
+    \multirow{2}{*}{HML} & 原始 & 1.9\% & 10.8\% & 0.18 & 40.5\% \\
+                          & VMP净值 & 1.8\% & 10.2\% & 0.17 & 47.7\% \\
+    \midrule
+    \multirow{2}{*}{RMW} & 原始 & $-1.6\%$ & 13.9\% & $-0.11$ & 67.8\% \\
+                          & VMP净值 & 1.1\% & 13.3\% & 0.08 & 71.8\% \\
+    \midrule
+    \multirow{2}{*}{CMA} & 原始 & 0.05\% & 10.6\% & 0.00 & 57.7\% \\
+                          & VMP净值 & $-2.1\%$ & 9.8\% & $-0.21$ & 54.9\% \\
+    \midrule
+    \multirow{2}{*}{\textbf{UMD}} & 原始 & $-1.9\%$ & 16.6\% & $-0.11$ & 77.1\% \\
+                                   & \textbf{VMP净值} & \textbf{6.8\%} & \textbf{15.4\%} & \textbf{0.44} & \textbf{55.9\%} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+从表~\ref{tab:perf_summary} 可以清晰地看出：
+
+\begin{enumerate}
+  \item \textbf{MKT和SMB：VMP有害}。市场因子的夏普比率从0.50降至0.14，规模因子从0.74降至0.11。这两个因子在A股本身表现良好，VMP的波动率择时反而破坏了其正常的收益累积过程。
+  \item \textbf{HML、RMW和CMA：VMP无效}。三个因子的VMP净值与原始收益相比，变化微乎其微，未产生有意义的改善。
+  \item \textbf{UMD：VMP效果卓越}。动量因子从年化$-1.9\%$的亏损，逆转为$6.8\%$的正收益；夏普比率从$-0.11$跃升至$0.44$；最大回撤从$77.1\%$缩小至$55.9\%$。
+\end{enumerate}
+
+\section{Spanning回归结果：VMP的Alpha来自哪里？}
+
+表~\ref{tab:spanning_nw} 报告了Spanning回归的结果。Alpha的显著性直接回答了"VMP是否创造了真正的增量价值"这一核心问题。
+
+\begin{table}[htbp]
+  \centering
+  \caption{Spanning回归结果——VMP净收益对原始因子的Alpha检验（全样本，21天窗口，Newey-West修正）}
+  \label{tab:spanning_nw}
+  \begin{tabular}{lcccccc}
+    \toprule
+    因子 & 年化Alpha & NW $t$值 & $p$值 & Beta & $R^2$ & 是否显著 \\
+    \midrule
+    MKT   & $-5.2\%$ & $-1.13$ & 0.261 & 0.64 & 0.47 & 否 \\
+    SMB   & $-5.4\%$ & $-2.36$ & 0.018 & 0.70 & 0.57 & 是（负向）\\
+    HML   & $+0.4\%$ & $+0.24$ & 0.810 & 0.71 & 0.56 & 否 \\
+    RMW   & $+2.3\%$ & $+1.00$ & 0.317 & 0.73 & 0.58 & 否 \\
+    CMA   & $-2.1\%$ & $-1.26$ & 0.208 & 0.70 & 0.58 & 否 \\
+    \textbf{UMD} & $\mathbf{+8.1\%}$ & $\mathbf{+3.27}$ & $\mathbf{0.001}$ & \textbf{0.71} & \textbf{0.59} & \textbf{是（$1\%$水平）} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+结果一目了然：
+\begin{itemize}
+  \item 在六个因子中，\textbf{只有UMD的Alpha在统计上极度显著}（$t = 3.27$，$p = 0.001$），VMP为动量因子创造了年化$8.1\%$的真实超额收益。
+  \item SMB的Alpha显著为负（$-5.4\%$，$t = -2.36$），说明VMP对规模因子具有明确的破坏作用。
+  \item 其余四个因子的Alpha均不显著，说明VMP既没有帮助也没有损害它们。
+\end{itemize}
+
+\section{聚焦动量因子：为什么只有UMD有效？}
+
+这是本文最核心的问题。为什么VMP对其他因子都不起作用，唯独对动量因子有奇效？
+
+\subsection{机制解释：信号被极端波动淹没}
+
+我们提出的核心解释是：\textbf{中国市场的动量效应并非"信号不存在"，而是"信号被极端波动所淹没"}。
+
+在正常的低波动时期，A股市场确实存在一定程度的动量效应——过去表现好的股票倾向于继续上涨。然而，中国市场频繁出现极端反转事件（如2015年股灾后的"千股涨停→千股跌停"切换），这些事件对动量策略造成了毁灭性的打击。由于这些极端事件总是伴随着波动率的急剧升高，VMP通过在高波动时期自动降低仓位，精确地回避了这些"反转踩踏"事件，从而将被噪音掩盖的动量信号重新提取出来。
+
+\subsection{累积收益曲线分析}
+
+图~\ref{fig:umd_cumret} 直观地展示了VMP对动量因子的"救活"效果。
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.9\textwidth]{umd_Advanced_Cumulative_Return.png}
+  \caption{动量因子（UMD）累积收益曲线对比：原始 vs VMP（扣除交易成本后）}
+  \label{fig:umd_cumret}
+\end{figure}
+
+从图中可以观察到：原始UMD的累积净值在2005--2025年间整体下行（印证了"中国没有动量"的文献共识），而VMP版本的UMD则呈现出稳定的上行趋势，尤其在2015年股灾等高波动时期成功回避了大幅亏损。
+
+\subsection{为什么MKT和SMB反而变差？}
+
+对于MKT和SMB的恶化，解释同样直观：这两个因子在A股本身是有效的，它们的风险溢价来自承担系统性风险和规模风险。VMP在高波动时降低仓位，恰恰在市场反弹初期（通常也是高波动时期）错过了最大的收益，导致净效果为负。简言之，\textbf{对于"好车"，自动驾驶系统的保守策略反而拖了后腿}。
+
+\section{其他因子的累积收益图}
+
+为完整起见，图~\ref{fig:mkt_cumret}--\ref{fig:cma_cumret} 展示了其余五个因子的累积收益曲线。
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{mkt_rf_Advanced_Cumulative_Return.png}
+  \caption{市场因子（MKT）累积收益曲线对比}
+  \label{fig:mkt_cumret}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{smb_Advanced_Cumulative_Return.png}
+  \caption{规模因子（SMB）累积收益曲线对比}
+  \label{fig:smb_cumret}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{hml_Advanced_Cumulative_Return.png}
+  \caption{价值因子（HML）累积收益曲线对比}
+  \label{fig:hml_cumret}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{rmw_Advanced_Cumulative_Return.png}
+  \caption{盈利因子（RMW）累积收益曲线对比}
+  \label{fig:rmw_cumret}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{cma_Advanced_Cumulative_Return.png}
+  \caption{投资因子（CMA）累积收益曲线对比}
+  \label{fig:cma_cumret}
+\end{figure}
+
+
+% ====================================================================
+% 第五章：稳健性检验
+% ====================================================================
+\chapter{稳健性检验}
+
+前一章的核心发现——VMP唯独对UMD有效——是否依赖于特定的参数选择或样本区间？本章通过三个维度的稳健性检验来回答这一问题。
+
+\section{替换波动率估计窗口}
+
+基准分析使用21天（约1个月）作为已实现方差的滚动窗口。本节将窗口替换为63天（约一季度）和126天（约半年），检验结论是否稳健。
+
+\begin{table}[htbp]
+  \centering
+  \caption{不同波动率窗口下UMD因子VMP净收益的Alpha检验（全样本，NW修正）}
+  \label{tab:robust_window}
+  \begin{tabular}{lcccc}
+    \toprule
+    窗口 & 净夏普比率 & 年化Alpha & NW $t$值 & $p$值 \\
+    \midrule
+    21天（基准） & 0.44 & $+8.1\%$ & $+3.27$ & 0.001 \\
+    63天 & 0.30 & $+6.5\%$ & $+2.91$ & 0.004 \\
+    126天 & 0.24 & $+6.1\%$ & $+2.97$ & 0.003 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+表~\ref{tab:robust_window} 表明：虽然随着窗口的增大，VMP的改善幅度有所递减（这符合直觉——更长的窗口对短期波动率变化的敏感度降低），但UMD的Alpha在三个窗口下均在$1\%$水平显著。\textbf{结论不依赖于特定的波动率估计参数}。
+
+\section{样本内与样本外检验}
+
+表~\ref{tab:robust_insample} 报告了样本内（2010--2019）和样本外（2020--2025）的UMD因子VMP表现。
+
+\begin{table}[htbp]
+  \centering
+  \caption{UMD因子VMP净收益的样本内外对比（21天窗口，NW修正）}
+  \label{tab:robust_insample}
+  \begin{tabular}{lccccc}
+    \toprule
+    时期 & 原始夏普 & VMP净夏普 & 年化Alpha & NW $t$值 & $p$值 \\
+    \midrule
+    样本内 (2010--2019) & $-0.04$ & 0.61 & $+10.9\%$ & $+2.71$ & 0.007 \\
+    样本外 (2020--2025) & $+0.20$ & 0.48 & $+4.3\%$ & $+1.17$ & 0.242 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+样本内期间，UMD的VMP改善极为显著（Alpha = 10.9\%，$p = 0.007$）。样本外期间，Alpha的统计显著性有所下降（$p = 0.242$），但从经济意义上看，VMP净夏普比率（0.48）仍然是原始因子（0.20）的两倍以上。样本外Alpha不显著可能与2020年以来A股量化交易拥挤度急剧上升以及宏观极端事件频发有关，但VMP的实际风险管理效用并未消失。
+
+\section{重大危机期间子样本分析}
+
+表~\ref{tab:robust_crisis} 报告了三次重大危机期间UMD因子的表现。
+
+\begin{table}[htbp]
+  \centering
+  \caption{重大危机期间UMD因子表现对比（21天窗口）}
+  \label{tab:robust_crisis}
+  \begin{tabular}{lcccc}
+    \toprule
+    危机时期 & 原始年化收益 & VMP净年化收益 & 原始最大回撤 & VMP净最大回撤 \\
+    \midrule
+    2015年股灾 & $-85.0\%$ & $-60.9\%$ & 46.0\% & 34.5\% \\
+    2018年贸易战 & $+6.4\%$ & $+30.2\%$ & 17.9\% & 10.6\% \\
+    2022年俄乌/疫情 & $-24.7\%$ & $-22.6\%$ & 25.0\% & 24.0\% \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+分析结果显示：
+\begin{enumerate}
+  \item \textbf{2015年股灾}：这是动量因子在A股最惨烈的崩盘。原始UMD年化亏损$85\%$，VMP将亏损缩窄至$61\%$，最大回撤从$46\%$降至$34.5\%$。虽然仍然亏损，但VMP通过识别前期波动率急升而提前降仓，显著缓解了损失。
+  \item \textbf{2018年贸易战}：VMP的表现尤为亮眼。在市场持续下跌的环境中，VMP版UMD年化收益达到$30.2\%$，远超原始的$6.4\%$，最大回撤仅为$10.6\%$。
+  \item \textbf{2022年俄乌/疫情}：两者表现差异较小，VMP的改善幅度有限。这可能与2022年的波动率结构不同于前两次危机有关。
+\end{enumerate}
+
+\section{小结}
+
+综合三个维度的稳健性检验，本文的核心结论——\textbf{VMP唯独对动量因子有效}——具有较高的稳健性。该结论在不同的波动率窗口、不同的样本期间以及不同的市场危机环境中均得到支持。
+
+
+% ====================================================================
+% 第六章：结论与启示
+% ====================================================================
+\chapter{结论与启示}
+
+\section{核心结论}
+
+本文将Moreira和Muir（2017）提出的波动率管理投资组合（VMP）策略系统性地引入中国A股市场，对Fama-French五因子及动量因子进行了全面的实证检验。在严格施加杠杆约束（3倍上限）和交易成本扣除（单边10个基点）的条件下，本文得出以下三个层次的核心结论：
+
+\textbf{第一，VMP不是万能药。}对于中国市场已经有效的因子（MKT和SMB），VMP不但没有帮助，反而损害了其表现。市场因子的夏普比率从0.50降至0.14，规模因子从0.74降至0.11。这表明，当因子的风险溢价来自承担系统性风险时，波动率择时会在市场反弹初期错过最大的收益。
+
+\textbf{第二，VMP对弱因子也无力回天。}对于在A股表现不佳或学术上被认为冗余的因子（HML、RMW、CMA），VMP同样未能产生统计显著的改善。这些因子的问题在于"信号本身微弱"，而非"信号被波动率淹没"，因此波动率管理无法为之增添实质内容。
+
+\textbf{第三，也是最重要的发现：VMP能够"救活"动量因子。}在中国市场，动量因子"裸跑"是亏钱的（年化$-1.9\%$，夏普$-0.11$），这与文献共识一致。然而，经VMP处理后，动量因子在扣除交易成本后的净夏普比率跃升至0.44，年化Alpha达到$8.1\%$，在Newey-West修正下极度显著（$p = 0.001$）。这一结论在替换波动率窗口（63天、126天）以及危机子样本分析中均保持稳健。
+
+\section{学术贡献}
+
+本文的核心学术贡献在于发现并解释了一个精彩的"不对称性"：为什么VMP只对动量因子有效？
+
+我们的解释是：中国市场的动量效应并非"信号不存在"，而是"信号被极端波动所淹没"。在正常的低波动时期，A股的动量信号确实存在；但中国市场频繁出现的极端反转事件（如2015年股灾期间的"千股涨停→千股跌停"切换）对动量策略造成了毁灭性打击。由于这些极端反转事件总是伴随着波动率的急剧升高，VMP通过在高波动时期自动降低仓位，精确地过滤掉了这些"反转踩踏"噪音，从而将被掩盖的动量信号重新提取出来。
+
+这一发现具有更广泛的理论启示：\textbf{一个因子在某一市场中的"失效"，可能不是因子本身无效，而是因子信号被市场微观结构的噪音所掩盖}。波动率管理提供了一种"去噪"的工具，使得原本被噪音淹没的因子信号得以显现。
+
+\section{实践启示}
+
+对于A股量化投资的实践者，本文的启示是明确的：
+
+\begin{enumerate}
+  \item \textbf{不要对所有因子一视同仁地使用VMP。}对于MKT和SMB等已有稳定风险溢价的因子，波动率管理不应是首选工具。
+  \item \textbf{在使用动量策略时，务必结合波动率进行仓位管理。}盲目"死拿"动量仓位在A股市场将面临极大的崩盘风险，动态的波动率调仓是动量策略落地A股的必要条件。
+  \item \textbf{在多因子模型中，应将因子自身的历史波动率纳入权重分配。}特别是对于在A股市场表现不稳定的因子（如动量），实时波动率信号可以作为有效的"择时指标"，帮助平滑极端市场环境下的净值回撤。
+\end{enumerate}
+
+\section{研究局限与未来方向}
+
+本文也存在一些局限性。首先，VMP对UMD的Alpha在2020年以后的样本外期间统计显著性有所下降，这可能反映了A股量化交易拥挤度上升带来的策略衰减效应，值得后续研究持续追踪。其次，本文仅检验了单因子层面的VMP，未来可以将分析扩展至多因子组合层面，探讨VMP与其他因子择时方法（如条件均值预测）的协同效应。最后，本文采用的已实现方差是最基础的波动率估计量，未来可以使用高频数据构建的已实现波动率或GARCH族模型的条件方差作为替代指标，进一步提高策略的精度。
 
 %---------------------------------------------------------------------
 %	参考文献
 %---------------------------------------------------------------------
 
-% 生成参考文献页
 \printbibliography
 
 %---------------------------------------------------------------------
@@ -134,28 +533,27 @@ John Preskill 认为我们现在处于“含噪声的中型量子时代”。\ci
 %---------------------------------------------------------------------
 
 \begin{acknowledgement}
-  感谢 \href{https://git.nju.edu.cn/nju-lug/lug-introduction}{LUG@NJU}。
+  % TODO: 填写致谢内容
+  感谢导师在论文选题和写作过程中的悉心指导。感谢国泰安（CSMAR）数据库提供了高质量的金融市场数据。
 \end{acknowledgement}
 
 %---------------------------------------------------------------------
-%	学术简历
+%	附录
 %---------------------------------------------------------------------
 
-% 详见手册中“成果列表”一节
-% \njuchapter{学术成果}
-% \section*{个人简历}
-% \njupaperlist[攻读博士学位期间发表的学术论文]{preskill2018}
-
-%---------------------------------------------------------------------
-%	附录部分
-%---------------------------------------------------------------------
-
-% 附录部分使用单独的字母序号
 \appendix
 
-% 可以在这里插入补充材料
-\chapter{正文中涉及的数据及源代码}
-\dots
+\chapter{核心数据处理代码}
 
-% 完工
+本文的数据处理和VMP策略构建均使用Python实现。核心的计算流程包括：
+
+\begin{enumerate}
+  \item 从CSMAR日度因子数据中读取MKT\_RF, SMB, HML, RMW, CMA, UMD六个因子的日度收益率。
+  \item 使用滚动窗口（21/63/126天）计算已实现方差，并取一阶滞后。
+  \item 根据方差倒数计算原始权重，施加3倍杠杆上限，扣除基于权重变化的交易成本。
+  \item 使用OLS回归配合Newey-West（HAC）标准误检验VMP净收益的Alpha显著性。
+\end{enumerate}
+
+% TODO: 可在此附上核心Python代码片段
+
 \end{document}

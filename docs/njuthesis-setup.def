@@ -11,30 +11,30 @@
 % info 类用于录入个人信息
 %   带*号的为对应英文字段
 \njusetup[info]{
-    title = {第一行标题\\第二行标题\\第三行标题},
+    title = {中国A股市场波动率管理\\投资组合(VMP)的实证研究\\——基于Fama-French五因子与动量因子},
     % 中文题目
     % 直接填写标题就是自动换行
     % 可以使用换行控制符(\\)手动指定换行位置
     %
-    title* = {My Title in English},
+    title* = {Empirical Study of Volatility-Managed Portfolios (VMP) in the Chinese A-share Market},
     % 英文题目
     %
     author = {姓名},
     % 作者姓名
     %
-    author* = {Ming Xing},
+    author* = {Name},
     % 作者英文姓名
     % 一般使用拼音
     %
-    keywords = {我,就是,充数的,关键词},
+    keywords = {因子投资,波动率管理,动量崩盘,Fama-French模型,交易成本},
     % 中文关键词列表
     % 使用英文半角逗号(,)分隔
     %
-    keywords* = {Dummy,Keywords,Here,{It Is}},
+    keywords* = {Factor Investing, Volatility-Managed Portfolios, Momentum Crashes, Fama-French Model, Trading Costs},
     % 英文关键词
     % 使用英文半角逗号(,)分隔
     %
-    grade = {2018},
+    grade = {2022},
     % 年级
     %
     student-id = {181850195},
@@ -42,19 +42,19 @@
     % 研究生请斟酌大小写字母格式
     % 本模板并不会自动更正大小写
     %
-    department = {化学化工学院},
-    department* = {School of Chemistry and Chemical Engineering},
+    department = {商学院},
+    department* = {School of Business},
     % 院系
     %
-    major = {化学},
-    major* = {Chemistry},
+    major = {金融学},
+    major* = {Finance},
     % 专业
     %
     % major = {封面专业,摘要专业},
     % 研究生专业型学位可能遇到两处内容不一致的情况
     %
     supervisor = {导师姓名,教授},
-    supervisor*= {Professor My Supervisor},
+    supervisor*= {Professor Supervisor},
     % 导师全称
     % 使用英文半角逗号(,)分隔中文姓名和职称
     %
@@ -75,8 +75,8 @@
     % degree* = {Master of Engineering},
     % 覆盖默认学位名称
     %
-    field = {物理化学},
-    field* = {Physical Chemistry},
+    field = {金融学},
+    field* = {Finance},
     % 研究领域
     %
     chairman = {某某某~教授},
@@ -91,7 +91,7 @@
     % 答辩委员会成员
     % 一般为四名，使用英文半角逗号(,)分隔
     %
-    clc = {O643.12},
+    clc = {F830.91},
     % 中国图书分类号
     %
     udc = {544.4},
@@ -155,7 +155,7 @@
 
 % image 类用于载入外置的图片
 \njusetup[image]{
-    % path = {{./figure/}{./image/}},
+    path = {{../../vmp_results_advanced/plots/}{../../vmp_results/plots/}},
     % 图片搜索路径
     %
     % nju-logo-color = black|purple,
