@@ -155,7 +155,7 @@
 
 % image 类用于载入外置的图片
 \njusetup[image]{
-    path = {{../../vmp_results_advanced/plots/}{../../vmp_results/plots/}},
+    path = {{./figures/}},
     % 图片搜索路径
     %
     % nju-logo-color = black|purple,
