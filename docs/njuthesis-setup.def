@@ -22,7 +22,7 @@
     author = {张伊璐},
     % 作者姓名
     %
-    author* = {Name},
+    author* = {Zhang Yilu},
     % 作者英文姓名
     % 一般使用拼音
     %
@@ -43,18 +43,18 @@
     % 本模板并不会自动更正大小写
     %
     department = {计算机学院},
-    department* = {School of Business},
+    department* = {School of Computer Science},
     % 院系
     %
     major = {金融工程实验班},
-    major* = {Finance},
+    major* = {Financial Engineering},
     % 专业
     %
     % major = {封面专业,摘要专业},
     % 研究生专业型学位可能遇到两处内容不一致的情况
     %
     supervisor = {陈莹,教授},
-    supervisor*= {Professor Supervisor},
+    supervisor*= {Prof. Chen Ying},
     % 导师全称
     % 使用英文半角逗号(,)分隔中文姓名和职称
     %
@@ -100,21 +100,21 @@
     secret-level = {公开},
     % 密级
     %
-    defend-date = {2022-05-21},
+    defend-date = {2026-05-21},
     % 答辩日期
     % 格式为 yyyy-mm-dd
     % 不填就是编译当天日期
     %
-    email = {xyz@smail.nju.edu.cn},
+    email = {221275028@smail.nju.edu.cn},
     % 电子邮箱地址
     % 只用于出版授权书
     %
     %
     % 以下用于国家图书馆封面
-    confer-date = {2022-05-22},
+    confer-date = {2026-06-30},
     % 学位授予日期
     %
-    bottom-date = {2022-05-23},
+    bottom-date = {2026-06-30},
     % 封面底部日期
     %
     supervisor-contact = {
