@@ -19,7 +19,7 @@
     title* = {Empirical Study of Volatility-Managed Portfolios (VMP) in the Chinese A-share Market},
     % 英文题目
     %
-    author = {姓名},
+    author = {张伊璐},
     % 作者姓名
     %
     author* = {Name},
@@ -37,23 +37,23 @@
     grade = {2022},
     % 年级
     %
-    student-id = {181850195},
+    student-id = {221275028},
     % 学号或工号
     % 研究生请斟酌大小写字母格式
     % 本模板并不会自动更正大小写
     %
-    department = {商学院},
+    department = {计算机学院},
     department* = {School of Business},
     % 院系
     %
-    major = {金融学},
+    major = {金融工程实验班},
     major* = {Finance},
     % 专业
     %
     % major = {封面专业,摘要专业},
     % 研究生专业型学位可能遇到两处内容不一致的情况
     %
-    supervisor = {导师姓名,教授},
+    supervisor = {陈莹,教授},
     supervisor*= {Professor Supervisor},
     % 导师全称
     % 使用英文半角逗号(,)分隔中文姓名和职称
@@ -63,7 +63,7 @@
     % 第二导师全称
     % 如果确实没有第二导师，不填写即可
     %
-    submit-date = {2022-05-20},
+    submit-date = {2026-05-15},
     % 提交日期
     % 格式为 yyyy-mm-dd
     % 不填就是编译当天日期
