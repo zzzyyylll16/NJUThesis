@@ -18,6 +18,28 @@
 \usepackage{multirow}    % 表格合并行
 \usepackage{amsmath}     % 数学公式
 \usepackage{graphicx}    % 插图
+\usepackage{listings}    % 代码排版
+\usepackage{xcolor}      % 颜色支持
+
+% Python代码样式设置
+\lstdefinestyle{pythonstyle}{
+  language=Python,
+  basicstyle=\small\ttfamily,
+  keywordstyle=\color{blue}\bfseries,
+  commentstyle=\color{gray}\itshape,
+  stringstyle=\color{red!70!black},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  numbersep=8pt,
+  breaklines=true,
+  frame=single,
+  rulecolor=\color{black!30},
+  backgroundcolor=\color{gray!5},
+  showstringspaces=false,
+  tabsize=4,
+  captionpos=b,
+  morekeywords={as, True, False, None, with, lambda},
+}
 
 % 开始编写论文
 \begin{document}
@@ -669,6 +691,114 @@ UMD & 0.0464 & $-$0.1652 & $-$0.1732 & 0.1400 & $-$0.2064 & 1.0000 \\
   \item 使用OLS回归配合Newey-West（HAC）标准误检验VMP净收益的Alpha显著性。
 \end{enumerate}
 
-% TODO: 可在此附上核心Python代码片段
+\section{VMP策略构建核心代码}
+
+以下代码实现了带有杠杆约束和交易成本的VMP策略构建。输入为因子日度收益率的DataFrame，输出为VMP净收益率序列。
+
+\begin{lstlisting}[style=pythonstyle, caption={VMP策略构建函数}]
+import pandas as pd
+import numpy as np
+
+def run_vmp(data, factors, window=21, leverage_limit=3.0, tc_bps=10):
+    """
+    构建带有杠杆约束和交易成本的VMP策略
+    参数:
+        data: DataFrame, 含因子日度收益率
+        factors: list, 因子名称列表
+        window: int, 已实现方差的滚动窗口(交易日)
+        leverage_limit: float, 最大杠杆倍数
+        tc_bps: float, 单边交易成本(基点)
+    """
+    df = data[factors].copy()
+
+    # 步骤1: 计算滚动已实现方差及其一阶滞后
+    for f in factors:
+        df[f'{f}_RV'] = df[f].rolling(window).apply(
+            lambda x: (x**2).sum(), raw=True)
+        df[f'{f}_RV_lag'] = df[f'{f}_RV'].shift(1)
+    df.dropna(inplace=True)
+
+    # 步骤2: 对每个因子构建VMP
+    for f in factors:
+        raw_weight = 1.0 / df[f'{f}_RV_lag']
+        # 缩放常数c: 使VMP波动率与原始因子一致
+        c = df[f].std() / (df[f] * raw_weight).std()
+        # 施加杠杆上限约束
+        weight = (c * raw_weight).clip(upper=leverage_limit)
+        df[f'{f}_Weight'] = weight
+        # VMP毛收益
+        df[f'{f}_VMP'] = weight * df[f]
+        # 扣除交易成本: TC_t = |w_t - w_{t-1}| * kappa
+        tc = weight.diff().abs().fillna(0) * (tc_bps / 1e4)
+        df[f'{f}_VMP_Net'] = df[f'{f}_VMP'] - tc
+
+    return df
+\end{lstlisting}
+
+\section{Spanning回归与Newey-West检验代码}
+
+以下代码对VMP净收益进行Spanning回归，使用Newey-West异方差自相关一致标准误检验Alpha的显著性。
+
+\begin{lstlisting}[style=pythonstyle, caption={Spanning回归与Alpha检验}]
+import statsmodels.api as sm
+
+def spanning_regression_nw(data, factors, max_lags=5):
+    """
+    Spanning回归: r^{VMP,Net}_{f,t} = alpha + beta * r_{f,t} + eps_t
+    使用Newey-West HAC标准误修正
+    """
+    results = []
+    for f in factors:
+        y = data[f'{f}_VMP_Net']  # VMP净收益
+        X = sm.add_constant(data[f])  # 原始因子+截距
+        # OLS + Newey-West HAC (maxlags=5)
+        model = sm.OLS(y, X).fit(
+            cov_type='HAC', cov_kwds={'maxlags': max_lags})
+        results.append({
+            'Factor': f,
+            'Alpha_Ann': model.params['const'] * 252,
+            't_NW': model.tvalues['const'],
+            'p_value': model.pvalues['const'],
+            'Beta': model.params[f],
+            'R2': model.rsquared
+        })
+    return pd.DataFrame(results)
+\end{lstlisting}
+
+\section{描述性统计计算代码}
+
+以下代码计算因子收益率的描述性统计量，包括Jarque-Bera正态性检验和均值t检验。
+
+\begin{lstlisting}[style=pythonstyle, caption={描述性统计量计算}]
+from scipy import stats
+
+def descriptive_stats(data, factors):
+    """
+    计算因子日度收益率的描述性统计
+    包含: 均值、标准差、偏度、峰度、JB检验、t检验
+    """
+    results = {}
+    for f in factors:
+        x = data[f].dropna()
+        # 基本统计量
+        results[f] = {
+            'N': len(x),
+            'Mean(%)': x.mean() * 100,
+            'Std(%)': x.std() * 100,
+            'Skewness': x.skew(),
+            'Kurtosis': x.kurtosis(),  # 超额峰度
+            'Min(%)': x.min() * 100,
+            'Max(%)': x.max() * 100,
+            'Median(%)': x.median() * 100,
+        }
+        # Jarque-Bera正态性检验
+        jb, jb_p = stats.jarque_bera(x)
+        results[f]['JB_stat'] = jb
+        # t检验: H0: mu = 0
+        t, p = stats.ttest_1samp(x, 0)
+        results[f]['t_stat'] = t
+        results[f]['p_value'] = p
+    return pd.DataFrame(results)
+\end{lstlisting}
 
 \end{document}
