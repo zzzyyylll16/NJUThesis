@@ -19,6 +19,7 @@
 \usepackage{multirow}    % 表格合并行
 \usepackage{amsmath}     % 数学公式
 \usepackage{graphicx}    % 插图
+\usepackage{float}       % 强制浮动体位置
 \usepackage{listings}    % 代码排版
 \usepackage{xcolor}      % 颜色支持
 
@@ -590,21 +591,21 @@ UMD & 0.0464 & $-$0.1652 & $-$0.1732 & 0.1400 & $-$0.2064 & 1.0000 \\
 
 投资因子（CMA）在VMP管理后的表现，与原始因子基本持平，甚至略有恶化（年化alpha为$-2.1\%$，$p = 0.208$）。CMA在样本期间的总体表现接近零（日均收益$0.0002\%$），其属于A股市场中定价能力较弱的因子之一。对于本身不具有显著溢价的因子而言，VMP策略缺乏可以优化的收益空间，其交易成本反而可能对本已微薄的收益造成侵蚀。
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.85\textwidth]{hml_Advanced_Cumulative_Return.png}
   \caption{价值因子（HML）累积收益曲线对比：原始因子与VMP管理后净收益}
   \label{fig:hml_cumret}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.85\textwidth]{rmw_Advanced_Cumulative_Return.png}
   \caption{盈利因子（RMW）累积收益曲线对比：原始因子与VMP管理后净收益}
   \label{fig:rmw_cumret}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.85\textwidth]{cma_Advanced_Cumulative_Return.png}
   \caption{投资因子（CMA）累积收益曲线对比：原始因子与VMP管理后净收益}
