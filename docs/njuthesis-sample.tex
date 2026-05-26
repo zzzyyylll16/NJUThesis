@@ -80,9 +80,9 @@
 
 Can volatility-managed portfolios (VMP)---which scale factor exposures inversely with recent realized variance---improve risk-adjusted returns in China's A-share market? The answer, it turns out, depends heavily on which factor one applies the strategy to.
 
-Using CSMAR daily data spanning 2005--2025, this paper constructs VMP versions of the five Fama-French factors plus momentum (UMD) under realistic constraints: a 3x leverage cap and one-sided transaction costs of 10 basis points on daily weight turnover. Newey-West HAC standard errors are employed throughout.
+Using CSMAR daily data Spanning 2005--2025, this paper constructs VMP versions of the five Fama-French factors plus momentum (UMD) under realistic constraints: a 3x leverage cap and one-sided transaction costs of 10 basis points on daily weight turnover. Newey-West HAC standard errors are employed throughout.
 
-The key finding is a striking asymmetry. For momentum, VMP works remarkably well---flipping UMD's annualized return from $-1.9\%$ to $+6.8\%$ and pushing the net Sharpe ratio to $0.44$. The spanning-regression alpha of $8.1\%$ per year ($t = 3.27$) remains significant at the $1\%$ level across alternative volatility windows (63-day, 126-day) and during both the 2015 crash and 2018 trade-war episodes. For market and size factors, however, VMP backfires: size-factor alpha is $-5.4\%$ ($p = 0.018$), since these factors earn their premiums precisely during high-volatility rebounds that VMP scales away from. Value, profitability, and investment factors show near-zero alphas either way.
+The key finding is a striking asymmetry. For momentum, VMP works remarkably well---flipping UMD's annualized return from $-1.9\%$ to $+6.8\%$ and pushing the net Sharpe ratio to $0.44$. The Spanning-regression alpha of $8.1\%$ per year ($t = 3.27$) remains significant at the $1\%$ level across alternative volatility windows (63-day, 126-day) and during both the 2015 crash and 2018 trade-war episodes. For market and size factors, however, VMP backfires: size-factor alpha is $-5.4\%$ ($p = 0.018$), since these factors earn their premiums precisely during high-volatility rebounds that VMP scales away from. Value, profitability, and investment factors show near-zero alphas either way.
 
 These results echo---from an independent emerging-market sample---the conjecture of Cederburg et al.\ (2020) that VMP's benefits concentrate on momentum-type strategies. They also suggest that the apparent ``failure'' of momentum in A-shares may stem not from an absence of signal, but from a few catastrophic tail events that mask it.
 
@@ -111,7 +111,7 @@ These results echo---from an independent emerging-market sample---the conjecture
 
 如何在不放弃因子溢价的情况下，对因子组合的波动率风险进行较有效管理，已经成为近年来学术界以及业界比较关注的问题。Moreira和Muir \cite{moreira2017volatility} 提出了波动率管理组合（Volatility Managed Portfolio，VMP）策略.其核心思想即利用已实现波动率具有一定时序可预测性这一特点，在市场波动率较高时期减少因子暴露，而在波动率较低时期增加因子暴露。其研究结果表明，在美国市场主要因子中应用 VMP策略之后，所得到的管理组合相比原始因子具有显著为正的 Alpha，也就是说，VMP组合能够在一定程度上提供超过原始因子的风险调整后收益。该研究提出之后，也在学术界引起较多讨论。
 
-不过，VMP策略是否具有普遍有效性，学界至今并未形成一致结论。Cederburg等人 \cite{cederburg2020performance}从实证角度指出，Moreira和Muir所报告的alpha虽然在spanning test框架下具有统计显著性，但是如果进一步考虑实际交易限制条件，其对应经济收益并不是非常明显，而且该策略的有效性基本只集中在动量类因子；第二是在理论层面，Guo和Li (2019) 认为Moreira和Muir在推导VMP组合Alpha时，使用的收益率度量方法并不合适，在进行修正之后，无法从理论上证明VMP组合一定存在显著为正的Alpha。此外，Liu等人 \cite{liu2019size} 和Chi等人 (2019) 的研究进一步表明，VMP策略在不同市场环境以及制度背景之下，其适用性也存在比较明显差异。
+不过，VMP策略是否具有普遍有效性，学界至今并未形成一致结论。Cederburg等人 \cite{cederburg2020performance}从实证角度指出，Moreira和Muir所报告的alpha虽然在Spanning test框架下具有统计显著性，但是如果进一步考虑实际交易限制条件，其对应经济收益并不是非常明显，而且该策略的有效性基本只集中在动量类因子；第二是在理论层面，Guo和Li (2019) 认为Moreira和Muir在推导VMP组合Alpha时，使用的收益率度量方法并不合适，在进行修正之后，无法从理论上证明VMP组合一定存在显著为正的Alpha。此外，Liu等人 \cite{liu2019size} 和Chi等人 (2019) 的研究进一步表明，VMP策略在不同市场环境以及制度背景之下，其适用性也存在比较明显差异。
 
 在这一背景下，中国A股市场为重新检验VMP策略提供了一个合适的研究对象。与美国市场相比，A股在投资者结构、交易制度和因子表现上都具有较强的特殊性。A股市场以散户投资者为主，交易行为更容易受到情绪驱动，因而波动率的形成机制与成熟市场并不完全相同。与此同时，中国市场的因子定价结构也与美国存在差异，Liu等人 \cite{liu2019size} 指出，Fama-French因子在A股的适用性有限，尤其动量效应往往表现较弱甚至呈现反转。此外，A股市场还有涨跌停制度、T+1交易约束以及政策冲击频繁等特点。Chi等人 (2019) 指出，A股收益率与历史波动率之间呈正相关关系，这与美国市场的负相关特征形成鲜明对比，也意味着 VMP 策略在中国市场未必会重复其在美国市场中的表现。
 
@@ -146,7 +146,7 @@ Moreira和Muir \cite{moreira2017volatility} 的原始研究基于美国市场数
 
 \subsection{从CAPM到Fama-French五因子模型}
 
-现代因子投资理论最早可以追溯到Sharpe \cite{sharpe1964capital} 提出的资本资产定价模型（CAPM）。CAPM认为，市场投资组合是唯一的风险定价因子，个股的预期超额收益主要由其市场Beta决定。但后续大量实证研究发现，CAPM对股票收益截面差异的解释能力是有限的。特别是小市值股票和高账面市值比股票的平均收益，往往明显高于CAPM模型的预测值，这说明仅依靠市场因子并不足以解释股票收益的系统性差异。
+因子投资理论最早可以追溯到Sharpe \cite{sharpe1964capital} 提出的资本资产定价模型（CAPM）。CAPM认为，市场投资组合是唯一的风险定价因子，个股的预期超额收益主要由其市场Beta决定。但后续大量实证研究发现，CAPM对股票收益截面差异的解释能力是有限的。特别是小市值股票和高账面市值比股票的平均收益，往往明显高于CAPM模型的预测值，这说明仅依靠市场因子并不足以解释股票收益的系统性差异。
 
 在这一背景下，Fama和French \cite{fama1993common} 提出了三因子模型，在市场因子之外加入了规模因子（SMB）和价值因子（HML）。其中，SMB反映小市值股票相对于大市值股票的超额收益，HML反映高账面市值比股票相对于低账面市值比股票的超额收益。三因子模型显著提高了对股票截面收益率的解释能力，也因此成为资产定价研究中的经典框架。围绕规模效应和价值效应的来源，学界一直存在两种主要解释：一种认为这类收益来源于对更高风险的补偿，另一种则认为其背后包含投资者错误定价和行为偏差的影响。
 
@@ -166,17 +166,15 @@ Jegadeesh和Titman \cite{jegadeesh1993returns} 最早系统性地记录了股票
 
 关于波动率择时是否具有经济价值，Fleming等人 \cite{fleming2001economic} 给出了最早的系统性证据。他们观察到已实现波动率在时间序列上有较强的可预测性，据此动态调整组合权重可以给投资者带来年化50到200个基点的确定性等价收益提升。这个结果为后来Moreira和Muir的工作奠定了经验上的基础。
 
-Moreira和Muir \cite{moreira2017volatility} 在此基础上把波动率择时的思想发展为一个完整的框架。他们抓住了一个关键的经验事实：因子收益的条件方差在时间序列上高度可预测（所谓波动率聚集），但条件均值跟条件方差之间的关系很弱，甚至可能是负的。这意味着波动率升高时投资者多承担了风险却没得到相应补偿——那么反过来操作，高波动时减仓、低波动时加仓（用方差倒数缩放仓位），就能在不太牺牲期望收益的前提下把波动率降下来，夏普比率自然就上去了。他们用美股多个因子做了实证，发现VMP在大部分因子上都能产生显著的spanning回归alpha。
+Moreira和Muir \cite{moreira2017volatility} 在此基础上把波动率择时的思想发展为一个完整的框架。他们抓住了一个关键的经验事实：因子收益的条件方差在时间序列上高度可预测（所谓波动率聚集），但条件均值跟条件方差之间的关系很弱，甚至可能是负的。这意味着波动率升高时投资者多承担了风险却没得到相应补偿——那么反过来操作，高波动时减仓、低波动时加仓（用方差倒数缩放仓位），就能在不太牺牲期望收益的前提下把波动率降下来，夏普比率自然就上去了。他们用美股多个因子做了实证，发现VMP在大部分因子上都能产生显著的Spanning回归alpha。
 
 Barroso和Santa-Clara \cite{barroso2015momentum} 则专门从动量策略的角度给出了更直接的支持。动量策略的已实现波动率有很强的一阶自相关（系数超过0.9），利用这一点做实时风险缩放，能将夏普比率从0.53拉到0.97。更关键的是，经过风险管理的动量策略几乎完全消除了崩盘式亏损：2009年3月美股大反弹时，裸动量亏了超过70\%，管理后的版本只亏了不到10\%。这意味着波动率管理对高尾部风险因子有特别突出的改善效果。
 
 \subsection{对VMP的质疑与学术争论}
 
-有关VMP策略的有效性，学术界并没有完全一致的观点，批评的声音主要集中在两个方面。
-第一维主要从统计稳健性入手。Cederburg等人 \cite{cederburg2020performance} 对Moreira和Muir的研究结论进行了全面的再检验。其发现VMP改善效果很大程度上依靠因子类型以及检验设定。具体而言，VMP对于市场因子（MKT）的改善最稳健，但是对规模因子（SMB）、价值因子（HML）等其它因子的改善效果较差，大多数情况下在统计上不显著。另外VMP实际表现对于波动率估计窗口的选择比较敏感，用不同的回望窗口（21天、63天、126天等）得到的结论也不一样。他们认为Moreira和Muir原始的结果可能是由于参数的选择偏差造成的，也就是研究者会报告表现最好的参数设定。
-第二个维度主要是对交易成本的考察。DeMiguel等人 \cite{demiguel2024transaction}从实践可行性角度提出更尖锐的批评。他们认为VMP策略要根据波动率变化频繁调整仓位，而在日度调仓的设定下会带来很高的换手率。用市场因子来表示时，VMP的年化换手率会比原始的买入持有策略高出很多，甚至达到十倍以上。流动性差的因子（例如以小市值股票为基准的SMB）交易成本的侵蚀则更严重。DeMiguel 等人的估算表明，在纳入合理的交易成本假设之后，多数因子的VMP 改善将变得不显著，部分因子甚至出现净亏损。该批评促使后来的研究者在评价VMP的时候要考虑到交易成本的因素。
+有关VMP策略是否有效，学术界一直存在争议。现有批评主要集中在两个方面。其一是统计稳健性问题。Cederburg等人 \cite{cederburg2020performance}对Moreira和Muir的研究结论进行了重新检验，发现VMP的改善效果在很大程度上依赖于因子类型和检验设定。具体来看，VMP对市场因子（MKT）的改善相对稳健，但对规模因子（SMB）、价值因子（HML）等其他因子的作用较弱，在大多数情况下并不显著。此外，VMP的表现对波动率估计窗口也较为敏感，使用21天、63天、126天等不同回望窗口时，所得结果并不一致。因此，他们认为Moreira和Muir原始结论中的部分显著性，可能与参数选择偏差有关。其二是交易成本问题。DeMiguel等人 \cite{demiguel2024transaction}从实践可行性的角度指出，VMP需要根据波动率变化频繁调整仓位，在日度调仓设定下会产生较高换手率。以市场因子为例，VMP的年化换手率可能明显高于原始买入持有策略；对于流动性较差的因子，如以小市值股票为基础构建的SMB，交易成本的影响则更为明显。他们的估算结果表明，在纳入较为合理的交易成本假设后，多数因子的VMP收益改善将不再显著，部分因子甚至会出现净亏损。
 
-上述两方面的争论构成了VMP研究领域最核心的学术张力：支持者认为波动率管理能够系统性地改善因子组合的风险收益特征，批评者则认为这种改善在扣除交易费用并考虑参数敏感性后可能难以成立。值得注意的是，最新的研究仍在持续推进这一争论。DeMiguel等人 \cite{demiguel2024multifactor} 将VMP分析扩展至大量因子特征，发现波动率管理在多因子框架下的收益改善幅度远小于单因子检验所暗示的水平，进一步强调了交易成本和因子拥挤对VMP实际表现的制约。Schwarz \cite{schwarz2025international} 则将VMP策略推广至全球多个市场，发现其有效性在不同制度环境和市场结构中呈现出显著的异质性，新兴市场中的表现尤其不稳定。本文在实证分析中同时报告了扣除交易成本前后的VMP表现，以回应这一争论。
+上述争论说明，VMP的有效性并不能被简单视为一个已经得到定论的问题。支持者强调波动率管理对风险收益特征的改善作用，批评者则认为这种改善在考虑参数敏感性和实际交易摩擦后可能难以稳定成立。近年的研究并没有消除这一分歧，反而进一步表明，VMP的表现会随着研究框架和市场环境的变化而发生差异。例如，DeMiguel等人\cite{demiguel2024multifactor}在多因子框架下发现，波动率管理带来的收益改善明显弱于单因子检验中的结果，说明交易成本和因子拥挤可能限制其实际表现；Schwarz\cite{schwarz2025international}也发现，VMP在不同国家市场中的效果并不一致，在新兴市场中的表现尤其不稳定。基于这一背景，本文在实证分析中不仅考察VMP策略是否能够改善因子收益表现，同时也扣除了交易成本，以更全面地评估其在A股市场中的适用性。
 
 \section{中国A股市场因子有效性}
 
@@ -185,13 +183,17 @@ Barroso和Santa-Clara \cite{barroso2015momentum} 则专门从动量策略的角�
 中国A股市场的因子结构同成熟市场相比，存在着比较明显的差别，近些年来已有不少研究对这一现象做了系统的检验。Liu等人 \cite{liu2019size} 针对中国市场的特殊性，构建了中国三因子模型（CH-3），其关键的创新之处在于：将流通市值最小的$30\%$股票识别为受壳价值污染的样本并加以剔除，剔除的原因是这些微型股的高收益率主要反映的是借壳上市产生的投机价值，而非真实的规模溢价。研究还发现，在剔除壳污染之后，中国市场仍然存在显著的规模效应，但是账面市值比（B/M）的解释力却大幅度降低，而市盈率倒数（E/P）却反映出了更强的定价能力。
 在中文学术界，赵胜民等 \cite{zhao2016volatility} 较早对Fama-French五因子模型在A股市场的适用性进行了系统检验，发现五因子模型相对于三因子模型的改进幅度有限，盈利因子和投资因子在中国市场的解释力不如在美股中表现得那样突出。李志冰等 \cite{li2017factor} 进一步利用2000—2015年A股数据对五因子模型进行了全面实证检验，发现规模因子和价值因子在中国市场仍然具有显著的定价能力，但五因子模型对于特定类型异象（如应计异象）的解释力有所不足。
 
-Hu等人 \cite{hu2019chinese} 对中国市场Fama-French因子做了全面的实证检验。其研究表明，在所有因子之中，规模因子（SMB）对于中国股票收益截面差异的解释力最强，无论是在时间序列回归抑或是Fama-MacBeth截面回归之中，均呈现出高度的显著性。然而，价值因子（HML）的表现稳健性不足，在不同的检验设定与样本期间之内，其结果存在较大的差异。Blitz等人 \cite{blitz2021volatility} 则从另一个角度揭示了中国市场的独特性：其发现A股市场存在显著且稳健的低波动率异象，即低风险股票的收益率系统性地高于高风险股票，且这一效应的驱动力来自于波动率而非Beta。Liu等人 \cite{liu2024trend} 则从趋势因子的角度切入，揭示了中国市场作为散户主导市场在因子结构上的特殊性：传统动量在A股表现不佳，但基于移动平均线构建的趋势信号却具有显著的定价能力，其经济来源与散户投资者的技术分析行为密切相关。上述发现共同表明，波动率信息和价格趋势信息在中国市场中具有独特的定价含义，为理解VMP策略在A股的作用机制提供了间接的经验支持。
+Hu等人 \cite{hu2019chinese} 也对中国市场的Fama-French因子进行了较为全面的检验。其结果表明，在各类因子中，规模因子（SMB）对中国股票收益截面差异的解释力最强，无论是在时间序列回归中，还是在Fama-MacBeth截面回归中，都具有较高的显著性。相比之下，价值因子（HML）的表现不够稳定，在不同的检验设定和样本期间下，结论存在较大差异。Blitz等人 \cite{blitz2021volatility}则从低波动率异象的角度揭示了中国市场的另一项特征。他们发现，A股市场中低风险股票的收益率会系统性地高于高风险股票，而且这一现象主要由波动率驱动，而不是由Beta驱动。Liu等人 \cite{liu2024trend}从趋势因子的角度进一步说明了中国市场因子结构的特殊性。他们发现，传统动量在A股中的表现并不理想。
+
+总体来看，已有研究说明，中国市场中的规模、价值、波动率和趋势等信息都表现出不同于成熟市场的定价特征。这些研究一方面表明，国际经典因子模型在A股市场中的适用性需要结合本土市场特征重新理解；另一方面也为后文分析VMP策略在A股市场中的作用提供了经验背景。
 
 \subsection{中国的动量困境}
 
-与美股及欧洲市场有所差异的是，大量实证研究表明，传统意义上的个股动量效应在中国A股市场之中呈现出不显著乃至反转的特征。Cheema和Nartea \cite{cheema2018momentum} 对1996年至2013年之A股数据加以考察，发现基于过去6个月收益率排序的动量策略产生了显著为负的收益，此结果与美股市场的强动量效应形成了较为鲜明的对照。针对此一现象，现有文献提供了数种解释路径：其一，中国市场以散户投资者为主体（占交易量之$80\%$以上），散户投资者实践中存在过度反应与频繁交易，这导致了短期价格反转而非延续；其二，涨跌停板制度对于极端信息的即时反映有所限制，进而延缓了价格发现过程；其三，频繁之政策干预（例如IPO暂停、杠杆管控等）所造成的市场风格突变，亦对动量效应之持续性有所削弱。
+在中国市场的各类因子中，动量因子的表现尤为特殊。与美股市场中较为稳健的动量效应不同，大量实证研究发现，传统个股动量在A股市场并不显著，甚至在部分样本中表现为反转。Cheema和Nartea \cite{cheema2018momentum}对1996年至2013年的A股数据进行检验后发现，基于过去6个月收益率排序构建的动量策略会产生显著为负的收益，这与美股市场中的强动量效应形成了明显反差。
 
-然而，个股动量在中国之失效，并不意味着动量类信息完全不具备价值。如前所述，顾明等 \cite{guming2024factor} 发现，因子层面的动量效应在A股市场之中是显著的。其基于10个非动量因子构建的因子动量策略年化收益率达$9.91\%$，且经多因子模型调整后，仍然呈现出高度的显著性。Ma等人 \cite{jiang2024factormomentum} 进一步对中国A股的因子动量效应进行了系统的实证研究，发现时序因子动量和截面因子动量策略在不同的检验设定下均能产生显著的超额收益，且这种效应在控制了传统风险因子后依然稳健。上述发现共同暗示了，中国市场中的动量信息，或许被淹没于个股层面之高噪音之中，然而在更高的聚合层面（例如因子层面），仍然存在。
+对于这一现象，现有文献给出了几种可能的解释。首先，中国市场长期以散户投资者为主，散户交易频繁且更容易出现过度反应，这使得短期价格更容易出现反转，而不是持续延续。其次，涨跌停板制度在一定程度上限制了极端信息的即时反映，影响了价格发现过程。再次，IPO暂停、杠杆管控等政策冲击容易带来市场风格的突然切换，从而削弱动量效应的持续性。也就是说，中国市场中的动量失效并不一定意味着价格中完全不存在趋势信息，更可能说明这种信息在个股层面容易受到制度环境和交易行为的干扰。
+
+不过，个股动量的弱表现并不意味着动量类信息完全没有价值。已有研究发现，在更高的聚合层面上，动量效应仍然可能存在。顾明等 \cite{guming2024factor}发现，A股市场中的因子动量效应是显著的，其基于10个非动量因子构建的因子动量策略年化收益率达到$9.91\%$，并且在经过多因子模型调整之后仍然显著。Ma等人 \cite{jiang2024factormomentum} 进一步检验了中国A股中的时序因子动量和截面因子动量，发现两类策略在不同设定下均能够获得显著的超额收益。这些结果表明，在因子层面动量信息仍具有定价价值。一个可能的解释是：个股层面的高特质性噪音削弱了动量信号，而当组合聚合到因子层面时，这种信号更容易显现。
 
 \subsection{VMP在中国市场的研究现状}
 
@@ -203,7 +205,7 @@ Zhong和Li \cite{zhong2024sentiment} 则从投资者情绪的角度，探讨了�
 
 以上从三个方向梳理了与本文相关的已有文献。因子投资理论从CAPM一路发展到五因子模型，对截面收益差异的解释力不断提升，但动量效应在中国市场的失效仍是一个悬而未决的问题。VMP方面，Moreira和Muir开创性地证明了波动率择时对因子收益的改善潜力，但Cederburg等人和DeMiguel等人分别从统计稳健性和交易成本两个角度提出了有力质疑。就中国市场而言，因子结构与成熟市场差别明显，VMP在A股的研究仍比较初步。
 
-综合来看，一个明显的空白在于：对A股核心因子施加VMP后，在日度频率、有交易成本、有极端行情的条件下，到底能不能带来可靠的风险调整收益改善？本文要做的就是填这个空白。
+综合来看，一个明显的空白在于：对A股核心因子施加VMP后，在日度频率、有交易成本、有极端行情的条件下，到底能不能带来可靠的风险调整收益改善？本文试图填补该研究空白。
 
 
 % ====================================================================
@@ -302,7 +304,7 @@ VMP策略的核心输入是对因子收益率条件方差的实时估计。本�
   \label{eq:scaling}
 \end{equation}
 
-其中$\text{Std}(\cdot)$表示样本标准差。经过这一标准化后，VMP因子与原始因子在波动率水平上具有可比性，spanning回归中的alpha就能直接反映同等风险下的增量收益，而不只是杠杆放大的结果。
+其中$\text{Std}(\cdot)$表示样本标准差。经过这一标准化后，VMP因子与原始因子在波动率水平上具有可比性，Spanning回归中的alpha就能直接反映同等风险下的增量收益，而不只是杠杆放大的结果。
 
 \subsection{杠杆约束}
 
@@ -346,15 +348,15 @@ VMP因子的净收益率定义为：
 
 \subsection{Spanning回归与Alpha检验}
 
-VMP策略是否创造了超越原始因子的增量投资价值，需要通过正式的统计检验加以判断。本文采用spanning回归框架，对每个因子$f$分别估计如下回归方程：
+VMP策略是否创造了超越原始因子的增量投资价值，需要通过正式的统计检验加以判断。本文采用Spanning回归框架，对每个因子$f$分别估计如下回归方程：
 \begin{equation}
   r_{f,t}^{\text{VMP,Net}} = \alpha + \beta \cdot r_{f,t} + \varepsilon_t
-  \label{eq:spanning}
+  \label{eq:Spanning}
 \end{equation}
 
 该回归的经济含义在于：将VMP因子的净收益率对原始因子收益率进行投射，截距项$\alpha$衡量的是VMP组合中无法被原始因子线性复制的剩余收益部分。若$\alpha$在统计上显著为正，则说明一个持有原始因子的投资者通过转向VMP策略可以获得帕累托改善——在相同的因子暴露水平上获得更高的期望收益；若$\alpha$不显著或为负，则说明VMP策略未能提供增量价值，其收益完全可以被原始因子的适当线性组合所复制。$\beta$系数反映了VMP组合对原始因子的暴露程度，$R^2$则衡量原始因子对VMP收益变异的解释力。
 
-由于日度收益率数据通常存在条件异方差和短期序列相关，OLS标准误可能偏低。为此，所有回归的$t$统计量均采用Newey-West \cite{newey1987simple} HAC标准误（滞后阶数设为5个交易日，参照Moreira和Muir \cite{moreira2017volatility} 的处理）。此外，本文对全样本、样本内、样本外以及三个危机子样本分别进行spanning回归，以考察alpha在不同市场状态下的稳定性。
+由于日度收益率数据通常存在条件异方差和短期序列相关，OLS标准误可能偏低。为此，所有回归的$t$统计量均采用Newey-West \cite{newey1987simple} HAC标准误（滞后阶数设为5个交易日，参照Moreira和Muir \cite{moreira2017volatility} 的处理）。此外，本文对全样本、样本内、样本外以及三个危机子样本分别进行Spanning回归，以考察alpha在不同市场状态下的稳定性。
 
 
 % ====================================================================
@@ -430,7 +432,7 @@ $p$值 & 0.5397 & 0.6293 & 0.4356 & 0.7092 & 0.3486 & 0.0499 \\
 \end{minipage}
 \end{table}
 
-表~\ref{tab:corr_matrix}报告了六个原始因子之间的Pearson相关系数矩阵。其中较为突出的特征是SMB与RMW之间高达$-0.83$的强负相关。此结果与Hu等人\cite{hu2019chinese}的研究发现相一致：在中国市场之中，小盘股盈利能力往往较弱，规模溢价与盈利溢价之间存在天然之对冲关系。此高相关性，也意味着于多因子框架之下同时纳入SMB与RMW之时，需要注意多重共线性对于回归系数估计精度的影响。此外，CMA与SMB（$0.50$）、CMA与HML（$0.49$）之间存在较高的正相关关系，而CMA与RMW之间则为$-0.50$的负相关，此结果反映了价值、投资与盈利因子于中国市场中的复杂联动关系。与上述因子间的高相关性形成对比的是，UMD与其他五个因子相关系数的绝对值，均不超过$0.21$，这表明动量因子提供了相对独立的信息来源。此种低相关性特征，为后文之spanning回归提供了较为重要的背景：VMP对动量因子的改善效果是不太可能被其他因子所解释的，这是因为动量因子本身就处于因子空间的相对独立维度上。
+表~\ref{tab:corr_matrix}报告了六个原始因子之间的Pearson相关系数矩阵。其中较为突出的特征是SMB与RMW之间高达$-0.83$的强负相关。此结果与Hu等人\cite{hu2019chinese}的研究发现相一致：在中国市场之中，小盘股盈利能力往往较弱，规模溢价与盈利溢价之间存在天然之对冲关系。此高相关性，也意味着于多因子框架之下同时纳入SMB与RMW之时，需要注意多重共线性对于回归系数估计精度的影响。此外，CMA与SMB（$0.50$）、CMA与HML（$0.49$）之间存在较高的正相关关系，而CMA与RMW之间则为$-0.50$的负相关，此结果反映了价值、投资与盈利因子于中国市场中的复杂联动关系。与上述因子间的高相关性形成对比的是，UMD与其他五个因子相关系数的绝对值，均不超过$0.21$，这表明动量因子提供了相对独立的信息来源。此种低相关性特征，为后文之Spanning回归提供了较为重要的背景：VMP对动量因子的改善效果是不太可能被其他因子所解释的，这是因为动量因子本身就处于因子空间的相对独立维度上。
 
 
 \begin{table}[htbp]
@@ -495,7 +497,7 @@ UMD & 0.0464 & $-$0.1652 & $-$0.1732 & 0.1400 & $-$0.2064 & 1.0000 \\
 
 \section{Spanning回归结果}
 
-表~\ref{tab:spanning_nw}报告了spanning回归的结果，alpha是否显著为正是核心判断标准。
+表~\ref{tab:Spanning_nw}报告了Spanning回归的结果，alpha是否显著为正是核心判断标准。
 
 六个因子里，动量的alpha最突出：年化$+8.1\%$，$t = 3.27$（$p = 0.001$），在$1\%$水平下显著。意思是，如果一个投资者本来持有原始动量因子，换成VMP版本后，在保持同等因子暴露的情况下每年能多拿大约$8.1\%$的收益——这就是假设一所预测的效果。
 
@@ -505,7 +507,7 @@ UMD & 0.0464 & $-$0.1652 & $-$0.1732 & 0.1400 & $-$0.2064 & 1.0000 \\
 \begin{table}[htbp]
   \centering
   \caption{Spanning回归结果（全样本，21天窗口，Newey-West修正）}
-  \label{tab:spanning_nw}
+  \label{tab:Spanning_nw}
   \begin{tabular}{lcccccc}
     \toprule
     因子 & 年化Alpha & NW $t$值 & $p$值 & Beta & $R^2$ & 显著性 \\
@@ -564,7 +566,7 @@ UMD & 0.0464 & $-$0.1652 & $-$0.1732 & 0.1400 & $-$0.2064 & 1.0000 \\
 \subsection{VMP对其他因子的影响}
 图~\ref{fig:hml_cumret}、图~\ref{fig:rmw_cumret}以及图~\ref{fig:cma_cumret}分别展示了价值因子、盈利因子与投资因子的累积收益率对比情况。
 
-就价值因子（HML）而言，VMP管理前后的累积收益曲线走势高度相似，两者于整个样本期间保持近乎平行的轨迹，此结果与spanning回归中alpha接近零（$+0.4\%$，$p = 0.810$）的结果，具有一定吻合性。价值因子在A股市场中的风险溢价本身较弱（日均收益$0.008\%$，$t = 0.80$），VMP波动率择时既未能从中提取出额外的收益信号，亦未对其造成显著损害。
+就价值因子（HML）而言，VMP管理前后的累积收益曲线走势高度相似，两者于整个样本期间保持近乎平行的轨迹，此结果与Spanning回归中alpha接近零（$+0.4\%$，$p = 0.810$）的结果，具有一定吻合性。价值因子在A股市场中的风险溢价本身较弱（日均收益$0.008\%$，$t = 0.80$），VMP波动率择时既未能从中提取出额外的收益信号，亦未对其造成显著损害。
 
 盈利因子（RMW）的情况略有不同：原始因子于全样本期间的累积收益呈小幅下行趋势。VMP管理之后的收益略有改善，但是幅度极为有限（年化alpha仅$+2.3\%$，$p = 0.317$）。RMW于中国市场之特殊性，或在于其与SMB强负相关（$-0.83$）。此意味着盈利因子的收益波动，在很大程度上可以被规模因子所解释，因而VMP的独立调整空间受到了一定限制。
 
@@ -789,7 +791,7 @@ def run_vmp(data, factors, window=21, leverage_limit=3.0, tc_bps=10):
 \begin{lstlisting}[style=pythonstyle, caption={Spanning回归与Alpha检验}]
 import statsmodels.api as sm
 
-def spanning_regression_nw(data, factors, max_lags=5):
+def Spanning_regression_nw(data, factors, max_lags=5):
     """
     Spanning回归: r^{VMP,Net}_{f,t} = alpha + beta * r_{f,t} + eps_t
     使用Newey-West HAC标准误修正
