@@ -67,7 +67,7 @@
 
 本文基于CSMAR数据库2005—2025年的日度数据，将VMP策略分别应用于中国A股的Fama-French五因子（MKT、SMB、HML、RMW、CMA）及动量因子（UMD）。为回应DeMiguel等人（2020）关于交易成本的质疑，本文施加了3倍最大杠杆约束，并按每日权重变化幅度扣除单边万分之一的交易成本，统计推断采用Newey-West HAC标准误。
 
-结果表明，VMP对各因子的效果呈现显著的非对称性。对市场因子和规模因子，VMP反而损害了绩效表现；对价值、盈利和投资因子，改善效果不具统计显著性。唯一的例外是动量因子：VMP使UMD的净夏普比率从$-0.11$提升至$0.44$，年化Alpha为$8.1\%$（Newey-West $t = 3.27$，$p = 0.001$）。该结论在替换波动率估计窗口（63天、126天）、划分样本内外时期，以及2015年股灾、2018年贸易战和2022年熊市等子样本中均保持稳健。
+从实证结果来看，VMP在不同因子上的效果差异很大。市场因子和规模因子在经过波动率管理之后，绩效反而出现了下降；价值、盈利和投资三个因子虽然有一定改善，但统计上并不显著。真正有效的只有动量因子——VMP将UMD的净夏普比率从$-0.11$拉升到$0.44$，年化Alpha达到$8.1\%$（Newey-West $t = 3.27$，$p = 0.001$）。换用63天和126天的波动率估计窗口、区分样本内与样本外、单独检验2015年股灾和2018年贸易战以及2022年熊市等子样本，上述结论没有发生实质变化。
 
 上述发现意味着，A股动量效应的失效可能并非源于动量信号本身的缺失，而是少数高波动极端事件对动量收益的毁灭性冲击所致。VMP通过在高波动时期降低仓位，过滤了这类噪音，使潜在的动量信号得以显现。本文的结果为Cederburg等人（2020）“VMP仅对动量类因子有效”的判断提供了跨市场的独立证据。
 
@@ -78,13 +78,13 @@
 % ====================================================================
 \begin{abstract*}
 
-Factor investing in practice is frequently accompanied by severe return volatility and extreme risks such as ``factor crashes.'' The Volatility-Managed Portfolios (VMP) strategy proposed by Moreira and Muir (2017) dynamically scales factor exposures by the inverse of realized variance and has achieved significant risk-adjusted return improvements in U.S. markets. However, the effectiveness of this strategy in the Chinese A-share market remains largely untested.
+Factor investing strategies often face extreme return volatility in practice---momentum crashes being one notable example. Moreira and Muir (2017) proposed the Volatility-Managed Portfolios (VMP) approach, which scales factor exposures inversely with realized variance. While this method improved risk-adjusted returns for U.S. factors, whether it works in the Chinese A-share market has not been carefully examined.
 
-Using daily data from the CSMAR database spanning 2005 to 2025, this paper applies the VMP strategy to the Chinese Fama-French five factors (MKT, SMB, HML, RMW, CMA) and the momentum factor (UMD). To address concerns raised by DeMiguel et al. (2020) regarding trading costs, the VMP construction imposes a 3x maximum leverage constraint and deducts one-sided trading costs of 1 basis point based on daily weight changes. All statistical inferences employ Newey-West HAC standard errors.
+This paper uses CSMAR daily data from 2005 to 2025 and applies VMP to the five Fama-French factors (MKT, SMB, HML, RMW, CMA) plus the momentum factor (UMD) in China's A-share market. Following concerns from DeMiguel et al. (2020) about implementation costs, the paper caps leverage at 3x and charges one-sided transaction costs of 1 basis point proportional to daily weight turnover. Newey-West HAC standard errors are used throughout.
 
-The results reveal a pronounced asymmetry in VMP's effectiveness across factors. For the market and size factors, VMP actually impairs performance; for value, profitability, and investment factors, the improvements are statistically insignificant. The sole exception is the momentum factor: VMP raises UMD's net Sharpe ratio from $-0.11$ to $0.44$, with an annualized alpha of $8.1\%$ (Newey-West $t = 3.27$, $p = 0.001$). This finding is robust to alternative volatility estimation windows (63-day, 126-day), in-sample/out-of-sample splits, and subsample analyses covering the 2015 stock market crash, the 2018 trade war, and the 2022 bear market.
+The empirical findings show that VMP does not uniformly help. It actually hurts the market factor and the size factor. For value, profitability, and investment, the improvements are not statistically distinguishable from zero. Momentum is the only factor where VMP makes a real difference: the net Sharpe ratio of UMD goes from $-0.11$ to $0.44$, and the annualized spanning-test alpha is $8.1\%$ (Newey-West $t = 3.27$, $p = 0.001$). Robustness checks---using 63-day and 126-day volatility windows, splitting in-sample versus out-of-sample periods, and isolating the 2015 crash, 2018 trade war, and 2022 bear market---do not change this conclusion.
 
-These findings suggest that the failure of momentum in China's A-share market may not stem from the absence of the momentum signal itself, but rather from the destructive impact of a few extreme high-volatility events on momentum returns. By reducing positions during high-volatility regimes, VMP filters out such noise and allows the underlying momentum signal to emerge. Our results provide independent cross-market evidence supporting the conclusion of Cederburg et al. (2020) that VMP is effective primarily for momentum-type factors.
+One way to read these results is that momentum in China may not be truly absent; rather, a handful of high-volatility episodes inflict outsized damage on momentum returns and drag the unconditional average into negative territory. VMP mechanically cuts exposure when volatility spikes, so it sidesteps these crash episodes and lets the underlying positive signal show through. This interpretation is consistent with Cederburg et al. (2020), who found in U.S. data that VMP benefits primarily momentum-type factors. The present paper offers independent, out-of-sample support for that claim from a major emerging market.
 
 \end{abstract*}
 
